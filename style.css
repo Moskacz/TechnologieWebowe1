@@ -4,8 +4,7 @@ body {
     background: #0ca3d2;
 }
 
-#logowanie {
-    width: 250px;
+.form  {
     padding: 20px 20px 20px;
     background: whitesmoke;
     border-radius: 3px;
@@ -17,6 +16,14 @@ body {
     left: 0;
     right: 0;
     margin: auto;
+}
+
+#login_div {
+    width: 250px;
+}
+
+#mail_form {
+    height: auto;
 }
 
 h1 {

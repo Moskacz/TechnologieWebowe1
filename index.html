@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Wysyłanie maila</title>
+</head>
+<body>
+<div class="form" id="mail_form_div">
+    <h1>Wypełnij pola</h1>
+    <form action="Login" method="post" enctype="text/plain">
+        <label>Subject</label>
+        <input type="text" name="subject" placeholder="Subject"/>
+        <br/>
+        <label>To</label>
+        <input type="text" name="to_adresses" placeholder="To"/>
+        <br/>
+        <label>CC</label>
+        <input type="text" name="copy" placeholder="copy"/>
+        <br/>
+        <label>BCC</label>
+        <input type="text" name="bcopy" placeholder="b copy"/>
+        <br/>
+        <label>Text</label>
+        <input type="text" name="text" placeholder="Your text"/>
+        <br/>
+        <input type="submit" name="send" value="Send mail"/>
+    </form>
+</div>
+</body>
+</html>
