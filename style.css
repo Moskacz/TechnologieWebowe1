@@ -1,8 +1,8 @@
 body {
-    font: 13px/20px Helvetica, sans-serif;
+    font: 13px/20px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: lighter;
     color: #404040;
     background: #0ca3d2 url("background-mountains.jpg");
-    filter: blur(13px);
 }
 
 .form  {
@@ -23,9 +23,12 @@ body {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+    height: 25px;
+    font-size: 15px;
 }
 
 .form select {
+
     width: 100%;
 }
 
@@ -34,17 +37,33 @@ body {
     height: 200px;
 }
 
+.cloud-button {
+    text-align: center;
+    background: #ecf0f1;
+    border: 0;
+    box-shadow: inset 0 -2px #dadedf;
+    cursor: pointer;
+    color: #454545;
+    height: 25px;
+    font-size: 15px;
+}
+
+.cloud-button:hover {
+    background: #b5d1d2;
+}
+
 #mail_div {
     width: 500px;
 }
 
 #login_div {
-    width: 250px;
+    width: 400px;;
 }
 
 
 h1 {
     margin: -15px -15px 15px;
+    padding-bottom: 5px;
     font-size: 15px;
     font-weight: lighter;
     border-bottom: 1px solid #cfcfcf;
