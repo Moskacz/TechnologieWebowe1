@@ -1,7 +1,8 @@
 body {
-    font: 13px/20px 'Lucia Grande', Tahoma, Verdana, sans-serif;
+    font: 13px/20px Helvetica, sans-serif;
     color: #404040;
-    background: #0ca3d2;
+    background: #0ca3d2 url("background-mountains.jpg");
+    filter: blur(13px);
 }
 
 .form  {
@@ -18,18 +19,34 @@ body {
     margin: auto;
 }
 
+.form input {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.form select {
+    width: 100%;
+}
+
+.form textarea {
+    width: 100%;
+    height: 200px;
+}
+
+#mail_div {
+    width: 500px;
+}
+
 #login_div {
     width: 250px;
 }
 
-#mail_form {
-    height: auto;
-}
 
 h1 {
     margin: -15px -15px 15px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: lighter;
     border-bottom: 1px solid #cfcfcf;
     border-radius: 3px 3px 0 0;
 }

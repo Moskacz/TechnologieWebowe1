@@ -6,25 +6,21 @@
     <title>Wysyłanie maila</title>
 </head>
 <body>
-<div class="form" id="mail_form_div">
+<div class="form" id="mail_div">
     <h1>Wypełnij pola</h1>
     <form action="Login" method="post" enctype="text/plain">
-        <label>Subject</label>
-        <input type="text" name="subject" placeholder="Subject"/>
-        <br/>
-        <label>To</label>
-        <input type="text" name="to_adresses" placeholder="To"/>
-        <br/>
-        <label>CC</label>
-        <input type="text" name="copy" placeholder="copy"/>
-        <br/>
-        <label>BCC</label>
-        <input type="text" name="bcopy" placeholder="b copy"/>
-        <br/>
-        <label>Text</label>
-        <input type="text" name="text" placeholder="Your text"/>
-        <br/>
-        <input type="submit" name="send" value="Send mail"/>
+        <input type="text" id="subject" name="subject" placeholder="Subject"/> <br/>
+
+        <select name="to_address">
+            <option>First List</option>
+            <option>Second List</option>
+            <option>Third list</option>
+        </select> <br/>
+
+        <input type="text" id="cc" name="cc" placeholder="CC"> <br/>
+        <input type="text" id="bcc" name="bcc" placeholder="BCC"> <br/>
+        <textarea id="message" name="message" placeholder="Message"></textarea> <br/>
+        <input type="submit" name="submit" value="Send mail"> <br/>
     </form>
 </div>
 </body>
