@@ -28,13 +28,13 @@ body {
 }
 
 .form select {
-
     width: 100%;
 }
 
 .form textarea {
     width: 100%;
     height: 200px;
+    font-size: 15px;
 }
 
 .cloud-button {
@@ -60,6 +60,9 @@ body {
     width: 400px;;
 }
 
+#summary_div {
+    width: 400px;
+}
 
 h1 {
     margin: -15px -15px 15px;
@@ -68,4 +71,9 @@ h1 {
     font-weight: lighter;
     border-bottom: 1px solid #cfcfcf;
     border-radius: 3px 3px 0 0;
+}
+
+h2 {
+    font-size: 13px;
+    font-weight: lighter;
 }
