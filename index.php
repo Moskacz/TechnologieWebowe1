@@ -23,6 +23,12 @@
         <textarea id="message" name="message" placeholder="Message"></textarea> <br/>
         <input type="submit" class="cloud-button" name="submit" value="Send mail"> <br/>
     </form>
+
+
+    <?php
+
+    ?>
+
 </div>
 </body>
 </html>

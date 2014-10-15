@@ -8,7 +8,7 @@
 
     $result = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
     if (mysqli_num_rows($result) > 0) {
-        header('location:index.html');
+        header('location:index.php');
     } else {
         header('location:login.html');
     }
