@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="form" id="mail_div">
-    <h1>Wypełnij pola</h1>
+    <h1>Fill fields</h1>
     <form action="summary.html" method="post" enctype="text/plain">
         <input type="text" id="subject" name="subject" placeholder="Subject"/> <br/>
 
@@ -21,10 +21,10 @@
         <input type="text" id="cc" name="cc" placeholder="CC"> <br/>
         <input type="text" id="bcc" name="bcc" placeholder="BCC"> <br/>
         <textarea id="message" name="message" placeholder="Message"></textarea> <br/>
+
+        <input type="file" name="select_file" value="select_file"> <br/>
         <input type="submit" class="cloud-button" name="submit" value="Send mail"> <br/>
     </form>
-
-
     <?php
 
     ?>
