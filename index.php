@@ -8,7 +8,7 @@
 <body>
 <div class="form" id="mail_div">
     <h1>Fill fields</h1>
-    <form action="summary.html" method="post" enctype="text/plain">
+    <form action="sender.php" method="post" enctype="text/plain">
         <input type="text" id="subject" name="subject" placeholder="Subject"/> <br/>
 
         <select name="to_address">
@@ -25,9 +25,7 @@
         <input type="file" name="select_file" value="select_file"> <br/>
         <input type="submit" class="cloud-button" name="submit" value="Send mail"> <br/>
     </form>
-    <?php
 
-    ?>
 
 </div>
 </body>
