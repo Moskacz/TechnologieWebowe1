@@ -1,5 +1,4 @@
 <?php
-
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -12,5 +11,5 @@
     } else {
         header('location:login.html');
     }
-
+    mysqli_close($dbc);
 ?>

@@ -12,12 +12,6 @@
     <?php
     require 'vendor/autoload.php';
 
-    $subject = $_POST['subject'];
-    $deliveryAddress = 'moskala.michal@gmail.com';
-    $cc = $_POST['cc'];
-    $bcc = $_POST['bcc'];
-    $message = 'test';
-
     $mail = new PHPMailer;
 
     $mail->isSMTP();
@@ -30,11 +24,21 @@
 
     $mail->From = 'moskala.michal@gmail.com';
     $mail->FromName = 'Michal Moskala';
-    $mail->addAddress($deliveryAddress);
 
+    $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
+    $emailListName = $_POST['to_address'];
+    $query = "SELECT email FROM mailing_lists WHERE mailing_list_name = '$emailListName'";
+    $result = mysqli_query($dbc, $query) or die('Error querying');
 
-    $mail->Subject = $subject;
-    $mail->Body    = $message;
+    while ($row = $result->fetch_array()) {
+        $address = $row['email'];
+        $mail->addAddress($address);
+    }
+
+    mysqli_close($dbc);
+
+    $mail->Subject = $_POST['subject'];
+    $mail->Body = $_POST['subject'];
 
     if(!$mail->send()) {
         echo "<h2> Message could not be sent. Error: $mail->ErrorInfo";
@@ -43,6 +47,7 @@
     }
 
     ?>
+    <br/>
     <button class="cloud-button" onclick="location.href='index.php'">Back</button>
 </div>
 
