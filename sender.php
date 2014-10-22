@@ -13,7 +13,7 @@
     require 'vendor/autoload.php';
 
     $mail = new PHPMailer;
-
+    $mail->CharSet = "UTF-8";
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
@@ -38,7 +38,7 @@
     mysqli_close($dbc);
 
     $mail->Subject = $_POST['subject'];
-    $mail->Body = $_POST['subject'];
+    $mail->Body = $_POST['message_body'];
 
     $attachment = $_FILES['attachment'];
     if ($attachment) {
