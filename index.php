@@ -15,7 +15,7 @@
             <option disabled selected>Select mailing list</option>
         <?php
             $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
-            $query = 'SELECT mailing_list_name FROM mailing_lists';
+            $query = 'SELECT DISTINCT mailing_list_name FROM mailing_lists';
             $result = mysqli_query($dbc, $query) or die('error querying');
             while ($row = $result->fetch_array()) {
                 $optionName = $row['mailing_list_name'];
