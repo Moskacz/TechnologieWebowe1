@@ -40,6 +40,13 @@
     $mail->Subject = $_POST['subject'];
     $mail->Body = $_POST['subject'];
 
+    $attachment = $_FILES['attachment'];
+    if ($attachment) {
+        if ($_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
+            $mail->addAttachment($_FILES['attachment']['tmp_name'], $_FILES['attachment']['name']);
+        }
+    }
+
     if(!$mail->send()) {
         echo "<h2> Message could not be sent. Error: $mail->ErrorInfo";
     } else {
