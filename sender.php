@@ -12,20 +12,23 @@
     <?php
     require 'vendor/autoload.php';
 
+    $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
+    $query = "SELECT * FROM secret";
+    $result = mysqli_query($dbc, $query) or die('Error querying');
+
+    $row = $result->fetch_assoc();
+
     $mail = new PHPMailer;
     $mail->CharSet = "UTF-8";
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'moskala.michal@gmail.com';
-    $mail->Password = 'THEceLL123';
-    $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
-
-    $mail->From = 'moskala.michal@gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = $row['email'];
+    $mail->Password = $row['password'];
+    $mail->SMTPSecure = 'tls';
+    $mail->From = $row['email'];
     $mail->FromName = 'Michal Moskala';
-
-    $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
     $emailListName = $_POST['to_address'];
     $query = "SELECT email FROM mailing_lists WHERE mailing_list_name = '$emailListName'";
     $result = mysqli_query($dbc, $query) or die('Error querying');
