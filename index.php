@@ -1,4 +1,8 @@
 <?php
+    function __autoload($class_name) {
+        include $class_name . '.php';
+    }
+
     function createSelectOptions() {
         $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
         $query = 'SELECT DISTINCT mailing_list_name FROM mailing_lists';
@@ -23,7 +27,10 @@
 <div class="form" id="mail_div">
     <?php
         session_start();
-        LoginHelper::logUser();
+        if (LoginHelper::isUserLogged() == 0) {
+            echo LoginHelper::$USER_NOT_LOGGED;
+            exit();
+        }
     ?>
     <h1>Fill fields</h1>
     <form action="sender.php" method="post" enctype="multipart/form-data">

@@ -1,3 +1,59 @@
+<?php
+require 'vendor/autoload.php';
+include 'LoginHelper.php';
+
+    function sendMail() {
+        $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
+        $query = "SELECT * FROM secret";
+        $result = mysqli_query($dbc, $query) or die('Error querying');
+
+        $row = $result->fetch_assoc();
+
+        $mail = new PHPMailer;
+        $mail->CharSet = "UTF-8";
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = $row['email'];
+        $mail->Password = $row['password'];
+        $mail->SMTPSecure = 'tls';
+        $mail->From = $row['email'];
+        $mail->FromName = $row['name'];
+        $mail->Subject = $_POST['subject'];
+        $mail->Body = $_POST['message_body'];
+        $emailListName = $_POST['to_address'];
+        $attachment = $_FILES['attachment'];
+
+        if ($attachment) {
+            if ($_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
+                $mail->addAttachment($_FILES['attachment']['tmp_name'], $_FILES['attachment']['name']);
+            }
+        }
+
+        $query = "SELECT email FROM mailing_lists WHERE mailing_list_name = '$emailListName'";
+        $result = mysqli_query($dbc, $query) or die('Error querying');
+
+        while ($row = $result->fetch_array()) {
+            $mail->clearAddresses();
+            $mail->clearCCs();
+            $mail->clearBCCs();
+            $address = $row['email'];
+            $mail->addAddress($address);
+            $mail->addCC($_POST['cc']);
+            $mail->addBCC($_POST['bcc']);
+            if (!$mail->send()) {
+                echo "<h2> Message to $address could not be sent. Error: $mail->ErrorInfo";
+            } else {
+                echo "<h2>Message to $address has been successfully sent</h2>";
+            }
+        }
+
+        mysqli_close($dbc);
+    }
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -8,56 +64,16 @@
 <body>
 
 <div class="form" id="summary_div">
+    <?php
+    session_start();
+    if (LoginHelper::isUserLogged() == 0) {
+        echo LoginHelper::$USER_NOT_LOGGED;
+        exit();
+    }
+    ?>
     <h1>Summary</h1>
     <?php
-    require 'vendor/autoload.php';
-
-    $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
-    $query = "SELECT * FROM secret";
-    $result = mysqli_query($dbc, $query) or die('Error querying');
-
-    $row = $result->fetch_assoc();
-
-    $mail = new PHPMailer;
-    $mail->CharSet = "UTF-8";
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPAuth = true;
-    $mail->Username = $row['email'];
-    $mail->Password = $row['password'];
-    $mail->SMTPSecure = 'tls';
-    $mail->From = $row['email'];
-    $mail->FromName = $row['name'];
-    $emailListName = $_POST['to_address'];
-    $query = "SELECT email FROM mailing_lists WHERE mailing_list_name = '$emailListName'";
-    $result = mysqli_query($dbc, $query) or die('Error querying');
-
-    while ($row = $result->fetch_array()) {
-        $address = $row['email'];
-        $mail->addAddress($address);
-    }
-
-    $mail->addCC($_POST['cc']);
-    $mail->addBCC($_POST['bcc']);
-    mysqli_close($dbc);
-
-    $mail->Subject = $_POST['subject'];
-    $mail->Body = $_POST['message_body'];
-
-    $attachment = $_FILES['attachment'];
-    if ($attachment) {
-        if ($_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
-            $mail->addAttachment($_FILES['attachment']['tmp_name'], $_FILES['attachment']['name']);
-        }
-    }
-
-    if(!$mail->send()) {
-        echo "<h2> Message could not be sent. Error: $mail->ErrorInfo";
-    } else {
-        echo '<h2>Messages have been successfully sent</h2>';
-    }
-
+        sendMail();
     ?>
     <br/>
     <button class="cloud-button" onclick="location.href='index.php'">Back</button>

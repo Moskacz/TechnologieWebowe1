@@ -1,4 +1,5 @@
 <?php
+    include 'LoginHelper.php';
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -7,7 +8,7 @@
 
     $result = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
     if (mysqli_num_rows($result) > 0) {
-        $_SESSION['logged'] = 1;
+        LoginHelper::logUser();
         header('location:index.php');
     } else {
         header('location:login.html');
