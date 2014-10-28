@@ -1,3 +1,17 @@
+<?php
+    function createSelectOptions() {
+        $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
+        $query = 'SELECT DISTINCT mailing_list_name FROM mailing_lists';
+        $result = mysqli_query($dbc, $query) or die('error querying');
+        echo '<option disabled selected>Select mailing list</option>';
+        while ($row = $result->fetch_array()) {
+            $optionName = $row['mailing_list_name'];
+            echo "<option>$optionName</option>";
+        }
+        mysqli_close($dbc);
+    }
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
@@ -7,21 +21,17 @@
 </head>
 <body>
 <div class="form" id="mail_div">
+    <?php
+        session_start();
+        LoginHelper::logUser();
+    ?>
     <h1>Fill fields</h1>
     <form action="sender.php" method="post" enctype="multipart/form-data">
         <input type="text" id="subject" name="subject" placeholder="Subject"/> <br/>
 
         <select name="to_address">
-            <option disabled selected>Select mailing list</option>
         <?php
-            $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
-            $query = 'SELECT DISTINCT mailing_list_name FROM mailing_lists';
-            $result = mysqli_query($dbc, $query) or die('error querying');
-            while ($row = $result->fetch_array()) {
-                $optionName = $row['mailing_list_name'];
-                echo "<option>$optionName</option>";
-            }
-            mysqli_close($dbc);
+           createSelectOptions();
         ?>
         </select><br/>
 

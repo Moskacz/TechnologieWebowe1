@@ -28,7 +28,7 @@
     $mail->Password = $row['password'];
     $mail->SMTPSecure = 'tls';
     $mail->From = $row['email'];
-    $mail->FromName = 'Michal Moskala';
+    $mail->FromName = $row['name'];
     $emailListName = $_POST['to_address'];
     $query = "SELECT email FROM mailing_lists WHERE mailing_list_name = '$emailListName'";
     $result = mysqli_query($dbc, $query) or die('Error querying');
@@ -38,6 +38,8 @@
         $mail->addAddress($address);
     }
 
+    $mail->addCC($_POST['cc']);
+    $mail->addBCC($_POST['bcc']);
     mysqli_close($dbc);
 
     $mail->Subject = $_POST['subject'];
