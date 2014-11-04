@@ -34,7 +34,6 @@
     ?>
     <h1>Fill fields</h1>
     <form action="sender.php" method="post" enctype="multipart/form-data">
-        <input type="text" id="subject" name="subject" placeholder="Subject"/> <br/>
 
         <select name="to_address">
         <?php
@@ -42,10 +41,7 @@
         ?>
         </select><br/>
 
-        <input type="text" id="cc" name="cc" placeholder="CC"> <br/>
-        <input type="text" id="bcc" name="bcc" placeholder="BCC"> <br/>
         <textarea id="message_body" name="message_body" placeholder="Message"></textarea> <br/>
-        <input type="file" id="attachment" name="attachment"> <br/>
         <input type="submit" class="cloud-button" name="submit" value="Send mail"> <br/>
     </form>
 </div>

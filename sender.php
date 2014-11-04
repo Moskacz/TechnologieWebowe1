@@ -20,16 +20,10 @@ include 'LoginHelper.php';
         $mail->SMTPSecure = 'tls';
         $mail->From = $row['email'];
         $mail->FromName = $row['name'];
-        $mail->Subject = $_POST['subject'];
+        $mail->Subject = 'Ankieta';
         $mail->Body = $_POST['message_body'];
         $emailListName = $_POST['to_address'];
-        $attachment = $_FILES['attachment'];
 
-        if ($attachment) {
-            if ($_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
-                $mail->addAttachment($_FILES['attachment']['tmp_name'], $_FILES['attachment']['name']);
-            }
-        }
 
         $query = "SELECT email FROM mailing_lists WHERE mailing_list_name = '$emailListName'";
         $result = mysqli_query($dbc, $query) or die('Error querying');
