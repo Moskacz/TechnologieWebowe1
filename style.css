@@ -48,6 +48,13 @@ body {
     font-size: 15px;
 }
 
+.product {
+    width: 100%;
+    background-color: wheat;
+    border-width: 3px;
+    text-align: center;
+}
+
 .cloud-button:hover {
     background: #b5d1d2;
 }
@@ -62,6 +69,10 @@ body {
 
 #summary_div {
     width: 400px;
+}
+
+#composer_div {
+    width: 600px;
 }
 
 h1 {

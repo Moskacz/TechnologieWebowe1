@@ -9,7 +9,7 @@
     $result = mysqli_query($dbc, $query) or die(mysqli_error($dbc));
     if (mysqli_num_rows($result) > 0) {
         LoginHelper::logUser();
-        header('location:index.php');
+        header('location:composer.php');
     } else {
         header('location:login.html');
     }
