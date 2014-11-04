@@ -48,15 +48,15 @@ body {
     font-size: 15px;
 }
 
+.cloud-button:hover {
+    background: #b5d1d2;
+}
+
 .product {
     width: 100%;
     background-color: wheat;
     border-width: 3px;
     text-align: center;
-}
-
-.cloud-button:hover {
-    background: #b5d1d2;
 }
 
 #mail_div {
@@ -73,7 +73,9 @@ body {
 
 #composer_div {
     width: 600px;
+    float: left;
 }
+
 
 h1 {
     margin: -15px -15px 15px;
