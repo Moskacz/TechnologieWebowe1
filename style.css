@@ -57,6 +57,12 @@ body {
     background-color: wheat;
     border-width: 3px;
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.product textarea {
+    height: 100px;
 }
 
 #mail_div {
