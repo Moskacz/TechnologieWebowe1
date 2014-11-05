@@ -47,6 +47,16 @@ function saveNewProduct(productDiv) {
     var addProductButton = document.getElementById("addProductButton");
     addProductButton.disabled = false;
 
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    }
+    else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    var requestURL = "databaseInsert.php?" + "productName=" + nameTextField.value + "&productDescription=" + descriptionTextArea.value;
+    xmlhttp.open("GET", requestURL, true);
+    xmlhttp.send();
+
     addSaveInvitesButtonIfNeeded();
 }
 
