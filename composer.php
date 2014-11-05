@@ -43,7 +43,6 @@
         createConfirmButton();
     ?>
     </form>
-</div>
-
+</div> 
 </body>
 </html>
