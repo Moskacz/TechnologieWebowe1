@@ -18,6 +18,7 @@ function createNewProduct () {
 
     var selectImageButton = document.createElement('input');
     selectImageButton.type = 'file';
+    selectImageButton.id = 'image';
     productDiv.appendChild(selectImageButton);
 
     var saveProductButton = document.createElement('input');
@@ -47,15 +48,23 @@ function saveNewProduct(productDiv) {
     var addProductButton = document.getElementById("addProductButton");
     addProductButton.disabled = false;
 
-    if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    }
-    else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    var requestURL = "databaseInsert.php?" + "productName=" + nameTextField.value + "&productDescription=" + descriptionTextArea.value;
-    xmlhttp.open("GET", requestURL, true);
-    xmlhttp.send();
+    var data = new FormData();
+    $.each(imageInput.files, function(key, value) {
+        data.append('image', value);
+    });
+    data.append('productName', nameTextField.value);
+    data.append('productDescription', descriptionTextArea.value);
+
+    $.ajax({
+        url: 'databaseInsert.php?files',
+        type: 'POST',
+        data: data,
+        cache: false,
+        dataType: 'json',
+        processData: false,
+        contentType: false
+    });
+
 
     addSaveInvitesButtonIfNeeded();
 }
