@@ -1,10 +1,12 @@
 <?php
     $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1');
 
-    $productName = $_GET['productName'];
-    $productDescription = $_GET['productDescription'];
+    $productName = $_POST['productName'];
+    $productDescription = $_POST['productDescription'];
+    $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-    $query = "INSERT INTO products (name, description) VALUES($productName, $productDescription)";
+    $query = "INSERT INTO products (name, description, image) VALUES('$productName', '$productDescription', '{$image}')";
+    echo $query;
     mysqli_query($dbc, $query) or die('error querying');
     mysqli_close($dbc);
 
