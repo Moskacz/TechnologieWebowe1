@@ -6,7 +6,6 @@
     $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
     $query = "INSERT INTO products (name, description, image) VALUES('$productName', '$productDescription', '{$image}')";
-    echo $query;
     mysqli_query($dbc, $query) or die('error querying');
     mysqli_close($dbc);
 

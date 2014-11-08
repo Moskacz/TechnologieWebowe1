@@ -43,7 +43,7 @@ include 'LoginHelper.php';
     }
 
     function getMessageBodyForEmail($emailAddress) {
-        $link = "http://localhost:8888/comparator.php?userID=$emailAddress&page=0";
+        $link = "http://localhost:8888/comparator.php?userName=$emailAddress&page=0";
         return "Witaj, \n Zostałeś zaproszony do ankiety, aby wziąć w niej udział wejdź w link: $link";
     }
 ?>
