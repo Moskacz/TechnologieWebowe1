@@ -21,7 +21,6 @@ include 'LoginHelper.php';
         $mail->From = $row['email'];
         $mail->FromName = $row['name'];
         $mail->Subject = 'Ankieta';
-        $mail->Body = $_POST['message_body'];
         $emailListName = $_POST['to_address'];
 
 
@@ -30,12 +29,9 @@ include 'LoginHelper.php';
 
         while ($row = $result->fetch_array()) {
             $mail->clearAddresses();
-            $mail->clearCCs();
-            $mail->clearBCCs();
             $address = $row['email'];
+            $mail->Body = getMessageBodyForEmail($address);
             $mail->addAddress($address);
-            $mail->addCC($_POST['cc']);
-            $mail->addBCC($_POST['bcc']);
             if (!$mail->send()) {
                 echo "<h2> Message to $address could not be sent. Error: $mail->ErrorInfo";
             } else {
@@ -44,6 +40,11 @@ include 'LoginHelper.php';
         }
 
         mysqli_close($dbc);
+    }
+
+    function getMessageBodyForEmail($emailAddress) {
+        $link = "http://localhost:8888/comparator.php?userID=$emailAddress&page=0";
+        return "Witaj, \n Zostałeś zaproszony do ankiety, aby wziąć w niej udział wejdź w link: $link";
     }
 ?>
 
