@@ -41,14 +41,36 @@
         return false;
     }
 
-    function getLeftProduct() {
+    function getProductWithID($productID) {
+        $dbc = mysqli_connect('localhost', 'root', 'root', 'ZaawansowaneTechnologieWebowe1') or die ('Error connecting to MySQL server');
+        $query = "SELECT * FROM products WHERE ID = $productID";
+        $result = mysqli_query($dbc, $query);
+        return $result->fetch_array();
+    }
 
+    function getLeftProduct() {
+        $index = $_GET['page'];
+        $pairs = generatePairs();
+        $pair = $pairs[$index];
+        $productID = $pair->getFirstID();
+        return getProductWithID($productID);
+    }
+
+    function getImageForProduct($product) {
+        echo '<img src="data:image/jpeg;base64,'.base64_encode( $product['image'] ).'"/>';
+    }
+
+    function getDescriptionForProduct($product) {
+        echo $product['description'];
     }
 
     function getRightProduct() {
-        
+        $index = $_GET['page'];
+        $pairs = generatePairs();
+        $pair = $pairs[$index];
+        $productID = $pair->getSecondID();
+        return getProductWithID($productID);
     }
-
 ?>
 
 
@@ -68,10 +90,21 @@
 
 <div id="comparatorContainer">
     <div class="product" id="leftProduct">
-        <?php generatePairs() ?>
+       <div class="productDescription">
+            <?php getDescriptionForProduct(getLeftProduct()) ?>
+       </div>
+       <div class="productImage">
+            <?php getImageForProduct(getLeftProduct()) ?>
+       </div>
     </div>
 
     <div class="product" id="rightProduct">
+       <div class="productImage">
+            <?php getImageForProduct(getRightProduct()) ?>
+       </div>
+       <div class="productDescription">
+            <?php getDescriptionForProduct(getRightProduct()) ?>
+       </div>
     </div>
 </div>
 

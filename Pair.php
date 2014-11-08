@@ -12,4 +12,12 @@ class Pair {
     public function __toString() {
         return 'Pair' . max($this->firstID, $this->secondID) . min($this->firstID, $this->secondID);
     }
+
+    public function getFirstID() {
+        return $this->firstID;
+    }
+
+    public function getSecondID() {
+        return $this->secondID;
+    }
 } 
