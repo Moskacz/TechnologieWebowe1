@@ -104,6 +104,11 @@
 </div>
 
 <div id="slider">
+    <div class="range-slider" data-slider>
+        <span class="range-slider-handle" role="slider" tabindex="0"></span>
+        <span class="range-slider-active-segment"></span>
+        <input type="hidden">
+    </div>
 </div>
 
 <div id="footer">
