@@ -72,9 +72,14 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" type="text/css" href="comparator.css">
-    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     <script src="comparatorScripts.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
     <title>Compare Products</title>
 </head>
 <body>
@@ -103,12 +108,10 @@
     </div>
 </div>
 
-<div id="slider">
-    <div class="range-slider" data-slider>
-        <span class="range-slider-handle" role="slider" tabindex="0"></span>
-        <span class="range-slider-active-segment"></span>
-        <input type="hidden">
-    </div>
+<div class="range-slider"  data-slider>
+    <span class="range-slider-handle" role="slider" tabindex="2"></span>
+    <span class="range-slider-active-segment"></span>
+    <input type="hidden">
 </div>
 
 <div id="footer">
