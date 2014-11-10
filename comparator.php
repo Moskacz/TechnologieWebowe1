@@ -109,8 +109,11 @@
     <input class="js-range"/>
     <script type="text/javascript">
         var element = document.querySelector('.js-range');
-        var init = new Powerange(element, { min: 0, max: 10, start: 5, step: 1, callback : function() {
-            
+        var init = new Powerange(element, { min: 0, max: 100, start: 50, callback : function() {
+            var leftProductImage = document.getElementById('leftProduct').getElementsByClassName('productImage');
+            $(leftProductImage).fadeTo(1, (1 - element.value/100));
+            var rightProductImage = document.getElementById('rightProduct').getElementsByClassName('productImage');
+            $(rightProductImage).fadeTo(1, element.value/100);
         }
         });
         document.getElementById('slider').appendChild(init);
