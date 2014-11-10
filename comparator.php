@@ -86,6 +86,14 @@
 </div>
 
 <div id="comparatorContainer">
+    <?php
+        $pairs = generatePairs();
+        $pageIndex = $_GET['page'];
+        if ($pageIndex >= count($pairs)) {
+            echo '<h2>' . 'Thank you' . '</h2>';
+            exit();
+        }
+    ?>
     <div class="product" id="leftProduct">
        <div class="productDescription">
             <?php getDescriptionForProduct(getProductWithID(getProductID("left"))) ?>
