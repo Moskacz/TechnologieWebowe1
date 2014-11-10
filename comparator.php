@@ -72,14 +72,11 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" type="text/css" href="comparator.css">
+    <link rel="stylesheet" type="text/css" href="dist/powerange.css" />
+    <link rel="stylesheet" type="text/css" href="comparator.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="comparatorScripts.js"></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
+    <script src="dist/powerange.js"></script>
     <title>Compare Products</title>
 </head>
 <body>
@@ -108,10 +105,16 @@
     </div>
 </div>
 
-<div class="range-slider"  data-slider>
-    <span class="range-slider-handle" role="slider" tabindex="2"></span>
-    <span class="range-slider-active-segment"></span>
-    <input type="hidden">
+<div id="slider">
+    <input class="js-range"/>
+    <script type="text/javascript">
+        var element = document.querySelector('.js-range');
+        var init = new Powerange(element, { min: 0, max: 10, start: 5, step: 1, callback : function() {
+            
+        }
+        });
+        document.getElementById('slider').appendChild(init);
+    </script>
 </div>
 
 <div id="footer">
